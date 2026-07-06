@@ -272,7 +272,11 @@ const act = {
 
   async submit() {
     const { network, device } = pdas(netName());
-    const dev: any = await (program.account as any).device.fetch(device);
+    const dev: any = await (program.account as any).device.fetch(device).catch(() => null);
+    if (!dev) {
+      log(`submit reading <span class="err">blocked</span> — register the device first`, "err-line");
+      return;
+    }
     const idx = dev.readingCount.toNumber();
     const value = Math.round(parseFloat(($("reading-value") as HTMLInputElement).value || "42.35") * 100);
     const payload = crypto.getRandomValues(new Uint8Array(32));
@@ -329,9 +333,16 @@ const act = {
   async resolve(i: number, fraud: boolean) {
     const { network, treasury, device } = pdas(netName());
     const saved = localStorage.getItem(`supermesh:challenger:${i}`);
+    const reading = saved
+      ? null
+      : await (program.account as any).reading.fetch(readingPda(device, i)).catch(() => null);
     const challengerPk = saved
       ? web3.Keypair.fromSecretKey(Uint8Array.from(JSON.parse(saved))).publicKey
-      : ((await (program.account as any).reading.fetch(readingPda(device, i))) as any).challenger;
+      : reading?.challenger;
+    if (!challengerPk) {
+      log(`resolve #${i} <span class="err">blocked</span> — reading or challenger not found`, "err-line");
+      return;
+    }
     await guard(`resolve #${i} → ${fraud ? "FRAUD (slash 20%)" : "honest"}`, () =>
       program.methods
         .resolveChallenge(fraud)
