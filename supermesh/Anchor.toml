@@ -1,0 +1,18 @@
+[toolchain]
+package_manager = "npm"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+supermesh = "F61wgBCXWygQ9j4iRuPNWzb7kaL1kdpG7DkVSf6EMqrF"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "cargo test"
+
+[hooks]

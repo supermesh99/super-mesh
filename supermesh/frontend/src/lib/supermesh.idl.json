@@ -1,0 +1,1524 @@
+{
+  "address": "F61wgBCXWygQ9j4iRuPNWzb7kaL1kdpG7DkVSf6EMqrF",
+  "metadata": {
+    "name": "supermesh",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "challenge_reading",
+      "docs": [
+        "Bond SOL to dispute a pending reading."
+      ],
+      "discriminator": [
+        145,
+        53,
+        121,
+        92,
+        168,
+        6,
+        234,
+        56
+      ],
+      "accounts": [
+        {
+          "name": "challenger",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "network",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  110,
+                  101,
+                  116,
+                  119,
+                  111,
+                  114,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network.name",
+                "account": "Network"
+              }
+            ]
+          },
+          "relations": [
+            "device"
+          ]
+        },
+        {
+          "name": "device",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  118,
+                  105,
+                  99,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              },
+              {
+                "kind": "account",
+                "path": "device.device_signer",
+                "account": "Device"
+              }
+            ]
+          }
+        },
+        {
+          "name": "reading",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  97,
+                  100,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "device"
+              },
+              {
+                "kind": "account",
+                "path": "reading.index",
+                "account": "Reading"
+              }
+            ]
+          }
+        },
+        {
+          "name": "treasury",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  97,
+                  115,
+                  117,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim_rewards",
+      "docs": [
+        "Withdraw accrued rewards."
+      ],
+      "discriminator": [
+        4,
+        144,
+        132,
+        71,
+        116,
+        23,
+        151,
+        80
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "device"
+          ]
+        },
+        {
+          "name": "network",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  110,
+                  101,
+                  116,
+                  119,
+                  111,
+                  114,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network.name",
+                "account": "Network"
+              }
+            ]
+          },
+          "relations": [
+            "device"
+          ]
+        },
+        {
+          "name": "device",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  118,
+                  105,
+                  99,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              },
+              {
+                "kind": "account",
+                "path": "device.device_signer",
+                "account": "Device"
+              }
+            ]
+          }
+        },
+        {
+          "name": "treasury",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  97,
+                  115,
+                  117,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "deactivate_device",
+      "docs": [
+        "Retire a device and withdraw stake + rewards."
+      ],
+      "discriminator": [
+        110,
+        153,
+        249,
+        89,
+        238,
+        111,
+        127,
+        72
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "device"
+          ]
+        },
+        {
+          "name": "network",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  110,
+                  101,
+                  116,
+                  119,
+                  111,
+                  114,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network.name",
+                "account": "Network"
+              }
+            ]
+          },
+          "relations": [
+            "device"
+          ]
+        },
+        {
+          "name": "device",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  118,
+                  105,
+                  99,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              },
+              {
+                "kind": "account",
+                "path": "device.device_signer",
+                "account": "Device"
+              }
+            ]
+          }
+        },
+        {
+          "name": "treasury",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  97,
+                  115,
+                  117,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "finalize_reading",
+      "docs": [
+        "Permissionless finalization after the challenge window elapses."
+      ],
+      "discriminator": [
+        52,
+        131,
+        123,
+        116,
+        194,
+        168,
+        138,
+        186
+      ],
+      "accounts": [
+        {
+          "name": "cranker",
+          "docs": [
+            "Any wallet may crank finalization."
+          ],
+          "signer": true
+        },
+        {
+          "name": "network",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  110,
+                  101,
+                  116,
+                  119,
+                  111,
+                  114,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network.name",
+                "account": "Network"
+              }
+            ]
+          },
+          "relations": [
+            "device"
+          ]
+        },
+        {
+          "name": "device",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  118,
+                  105,
+                  99,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              },
+              {
+                "kind": "account",
+                "path": "device.device_signer",
+                "account": "Device"
+              }
+            ]
+          }
+        },
+        {
+          "name": "reading",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  97,
+                  100,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "device"
+              },
+              {
+                "kind": "account",
+                "path": "reading.index",
+                "account": "Reading"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "init_network",
+      "docs": [
+        "Create a new sensor network and its treasury."
+      ],
+      "discriminator": [
+        104,
+        231,
+        73,
+        121,
+        240,
+        0,
+        5,
+        148
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "network",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  110,
+                  101,
+                  116,
+                  119,
+                  111,
+                  114,
+                  107
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "name"
+              }
+            ]
+          }
+        },
+        {
+          "name": "treasury",
+          "docs": [
+            "Program-owned lamport vault holding stakes, bonds and reward funds."
+          ],
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  97,
+                  115,
+                  117,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "min_stake",
+          "type": "u64"
+        },
+        {
+          "name": "reward_per_reading",
+          "type": "u64"
+        },
+        {
+          "name": "challenge_bond",
+          "type": "u64"
+        },
+        {
+          "name": "challenge_window_slots",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "register_device",
+      "docs": [
+        "Register a physical device, staking SOL as collateral."
+      ],
+      "discriminator": [
+        210,
+        151,
+        56,
+        68,
+        22,
+        158,
+        90,
+        193
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "device_signer",
+          "docs": [
+            "Hardware key of the physical sensor; must co-sign registration to",
+            "prove the registrant controls the device."
+          ],
+          "signer": true
+        },
+        {
+          "name": "network",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  110,
+                  101,
+                  116,
+                  119,
+                  111,
+                  114,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network.name",
+                "account": "Network"
+              }
+            ]
+          }
+        },
+        {
+          "name": "device",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  118,
+                  105,
+                  99,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              },
+              {
+                "kind": "account",
+                "path": "device_signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "treasury",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  97,
+                  115,
+                  117,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "stake",
+          "type": "u64"
+        },
+        {
+          "name": "geohash",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "resolve_challenge",
+      "docs": [
+        "Authority resolves a challenge (fraud proven or not)."
+      ],
+      "discriminator": [
+        81,
+        191,
+        124,
+        119,
+        131,
+        248,
+        157,
+        109
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "network",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  110,
+                  101,
+                  116,
+                  119,
+                  111,
+                  114,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network.name",
+                "account": "Network"
+              }
+            ]
+          },
+          "relations": [
+            "device"
+          ]
+        },
+        {
+          "name": "device",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  118,
+                  105,
+                  99,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              },
+              {
+                "kind": "account",
+                "path": "device.device_signer",
+                "account": "Device"
+              }
+            ]
+          }
+        },
+        {
+          "name": "reading",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  97,
+                  100,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "device"
+              },
+              {
+                "kind": "account",
+                "path": "reading.index",
+                "account": "Reading"
+              }
+            ]
+          }
+        },
+        {
+          "name": "challenger",
+          "writable": true
+        },
+        {
+          "name": "treasury",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  101,
+                  97,
+                  115,
+                  117,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "fraud_proven",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "set_pause",
+      "docs": [
+        "Emergency pause switch."
+      ],
+      "discriminator": [
+        63,
+        32,
+        154,
+        2,
+        56,
+        103,
+        79,
+        45
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "signer": true
+        },
+        {
+          "name": "network",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  110,
+                  101,
+                  116,
+                  119,
+                  111,
+                  114,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network.name",
+                "account": "Network"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "paused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "submit_reading",
+      "docs": [
+        "Submit a sensor reading (device hardware key must co-sign)."
+      ],
+      "discriminator": [
+        195,
+        186,
+        45,
+        0,
+        106,
+        119,
+        103,
+        166
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "device"
+          ]
+        },
+        {
+          "name": "device_signer",
+          "docs": [
+            "The device's hardware key must sign every reading, proving the data",
+            "originated from the registered sensor and not just its owner's wallet."
+          ],
+          "signer": true
+        },
+        {
+          "name": "network",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  110,
+                  101,
+                  116,
+                  119,
+                  111,
+                  114,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network.name",
+                "account": "Network"
+              }
+            ]
+          },
+          "relations": [
+            "device"
+          ]
+        },
+        {
+          "name": "device",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  118,
+                  105,
+                  99,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "network"
+              },
+              {
+                "kind": "account",
+                "path": "device_signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "reading",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  97,
+                  100,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "device"
+              },
+              {
+                "kind": "account",
+                "path": "device.reading_count",
+                "account": "Device"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "data_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "value",
+          "type": "i64"
+        },
+        {
+          "name": "measured_at",
+          "type": "i64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Device",
+      "discriminator": [
+        153,
+        248,
+        23,
+        39,
+        83,
+        45,
+        68,
+        128
+      ]
+    },
+    {
+      "name": "Network",
+      "discriminator": [
+        51,
+        5,
+        209,
+        183,
+        60,
+        99,
+        156,
+        251
+      ]
+    },
+    {
+      "name": "Reading",
+      "discriminator": [
+        211,
+        174,
+        42,
+        75,
+        49,
+        201,
+        134,
+        113
+      ]
+    },
+    {
+      "name": "Treasury",
+      "discriminator": [
+        238,
+        239,
+        123,
+        238,
+        89,
+        1,
+        168,
+        253
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NetworkPaused",
+      "msg": "The network is paused"
+    },
+    {
+      "code": 6001,
+      "name": "InsufficientStake",
+      "msg": "Stake amount is below the network minimum"
+    },
+    {
+      "code": 6002,
+      "name": "DeviceNotActive",
+      "msg": "Device is not active"
+    },
+    {
+      "code": 6003,
+      "name": "DeviceAlreadyDeactivated",
+      "msg": "Device is already deactivated"
+    },
+    {
+      "code": 6004,
+      "name": "RateLimited",
+      "msg": "Submitting readings too fast; rate limit not met"
+    },
+    {
+      "code": 6005,
+      "name": "ReadingNotPending",
+      "msg": "Reading is not in a pending state"
+    },
+    {
+      "code": 6006,
+      "name": "ReadingNotChallenged",
+      "msg": "Reading is not under challenge"
+    },
+    {
+      "code": 6007,
+      "name": "ChallengeWindowClosed",
+      "msg": "Challenge window has already closed"
+    },
+    {
+      "code": 6008,
+      "name": "ChallengeWindowOpen",
+      "msg": "Challenge window is still open"
+    },
+    {
+      "code": 6009,
+      "name": "SelfChallenge",
+      "msg": "A device owner cannot challenge their own reading"
+    },
+    {
+      "code": 6010,
+      "name": "ChallengerMismatch",
+      "msg": "Provided challenger account does not match the recorded challenger"
+    },
+    {
+      "code": 6011,
+      "name": "NothingToClaim",
+      "msg": "No rewards available to claim"
+    },
+    {
+      "code": 6012,
+      "name": "OpenChallenges",
+      "msg": "Device has unresolved challenges"
+    },
+    {
+      "code": 6013,
+      "name": "MathOverflow",
+      "msg": "Arithmetic overflow"
+    },
+    {
+      "code": 6014,
+      "name": "Unauthorized",
+      "msg": "Unauthorized"
+    }
+  ],
+  "types": [
+    {
+      "name": "Device",
+      "docs": [
+        "A registered physical sensor device (DePIN node)."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "docs": [
+              "Wallet that owns this device and receives rewards."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "network",
+            "docs": [
+              "Network this device belongs to."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "device_signer",
+            "docs": [
+              "Ed25519 public key burned into the device firmware; every reading",
+              "submission must be signed by this key (owner co-signs the tx)."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "staked",
+            "docs": [
+              "Lamports currently staked (slashable collateral)."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "pending_rewards",
+            "docs": [
+              "Lamports of rewards accrued and not yet claimed."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "reading_count",
+            "docs": [
+              "Monotonic counter of readings this device has submitted."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "last_reading_slot",
+            "docs": [
+              "Slot of the most recent submission (rate limiting)."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "reputation",
+            "docs": [
+              "Reputation score; drops on slashes, device suspended at <= 0."
+            ],
+            "type": "i32"
+          },
+          {
+            "name": "open_challenges",
+            "docs": [
+              "Number of this device's readings currently under challenge."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "active",
+            "docs": [
+              "Whether the device may submit readings."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "geohash",
+            "docs": [
+              "Geohash of the claimed deployment location (privacy-truncated)."
+            ],
+            "type": "string"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump."
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Network",
+      "docs": [
+        "Global configuration for a SuperMesh network.",
+        "",
+        "One network = one class of real-world data (e.g. \"air-quality:PM2.5\",",
+        "\"weather:temperature\", \"noise:dB\"). Devices stake SOL to join and earn",
+        "rewards for honest readings."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "docs": [
+              "Authority that can pause the network and tune parameters."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "docs": [
+              "Human-readable network identifier, e.g. \"pm25-blr\"."
+            ],
+            "type": "string"
+          },
+          {
+            "name": "min_stake",
+            "docs": [
+              "Minimum lamports a device must stake to register."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "reward_per_reading",
+            "docs": [
+              "Lamports paid to a device per finalized reading."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "challenge_bond",
+            "docs": [
+              "Lamports a challenger must bond to dispute a reading."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "challenge_window_slots",
+            "docs": [
+              "Slots a reading stays challengeable before it can be finalized."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "device_count",
+            "docs": [
+              "Total devices ever registered."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "total_finalized_readings",
+            "docs": [
+              "Total readings ever finalized network-wide."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "paused",
+            "docs": [
+              "Emergency pause switch."
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "treasury_bump",
+            "docs": [
+              "Treasury PDA bump (holds stakes, bonds and reward funds)."
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Reading",
+      "docs": [
+        "One optimistically-accepted sensor reading.",
+        "",
+        "The raw measurement lives off-chain (IPFS/Arweave); only its hash and a",
+        "coarse value land on-chain, keeping cost per reading tiny."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "device",
+            "docs": [
+              "Device that produced this reading."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "network",
+            "docs": [
+              "Network the reading belongs to."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "index",
+            "docs": [
+              "Per-device sequence number."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "data_hash",
+            "docs": [
+              "SHA-256 of the full off-chain measurement payload."
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "value",
+            "docs": [
+              "Scaled measurement value (e.g. PM2.5 µg/m³ ×100) for on-chain querying."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "measured_at",
+            "docs": [
+              "Unix timestamp claimed by the device."
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "submitted_slot",
+            "docs": [
+              "Slot at which the reading was submitted."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "status",
+            "docs": [
+              "Current lifecycle state."
+            ],
+            "type": {
+              "defined": {
+                "name": "ReadingStatus"
+              }
+            }
+          },
+          {
+            "name": "challenger",
+            "docs": [
+              "Challenger wallet (set when status == Challenged)."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "challenge_bond",
+            "docs": [
+              "Lamports bonded by the challenger."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump."
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ReadingStatus",
+      "docs": [
+        "Lifecycle of a submitted reading."
+      ],
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Pending"
+          },
+          {
+            "name": "Challenged"
+          },
+          {
+            "name": "Finalized"
+          },
+          {
+            "name": "Rejected"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Treasury",
+      "docs": [
+        "Program-owned lamport vault holding stakes, challenge bonds and reward",
+        "funds for one network. Being program-owned lets the program debit",
+        "lamports directly when paying out."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "network",
+            "docs": [
+              "Network this treasury belongs to."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump."
+            ],
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "SEED_DEVICE",
+      "type": "bytes",
+      "value": "[100, 101, 118, 105, 99, 101]"
+    },
+    {
+      "name": "SEED_NETWORK",
+      "type": "bytes",
+      "value": "[110, 101, 116, 119, 111, 114, 107]"
+    },
+    {
+      "name": "SEED_READING",
+      "type": "bytes",
+      "value": "[114, 101, 97, 100, 105, 110, 103]"
+    },
+    {
+      "name": "SEED_TREASURY",
+      "type": "bytes",
+      "value": "[116, 114, 101, 97, 115, 117, 114, 121]"
+    }
+  ]
+}
