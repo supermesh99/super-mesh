@@ -1,10 +1,10 @@
-<p align="center"><img src="landing/assets/logo-mark.png" alt="SuperMesh" width="120" /></p>
+<p align="center"><img src="frontend/public/assets/logo-mark.png" alt="SuperMesh" width="120" /></p>
 
 # SuperMesh
 
 **A decentralized physical-infrastructure (DePIN) sensor oracle on Solana.**
 
-![SuperMesh banner](landing/assets/twitter-banner.jpg)
+![SuperMesh banner](frontend/public/assets/twitter-banner.jpg)
 
 ## The real-world problem
 
