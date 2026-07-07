@@ -2,7 +2,7 @@
   "license": "ISC",
   "scripts": {
     "demo": "ts-node app/demo.ts",
-    "web": "npm --prefix frontend run dev",
+    "dev": "npm --prefix frontend run dev",
     "web:build": "npm --prefix frontend run build",
     "assets": "node scripts/gen-assets.mjs",
     "brand": "node scripts/gen-brand.mjs",
