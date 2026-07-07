@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://super-mesh.vercel.app"),
   title: "SuperMesh — Verifiable Physical Data Infrastructure",
   description:
     "SuperMesh is decentralized physical infrastructure on Solana. Hardware-attested environmental data, secured by stake.",
